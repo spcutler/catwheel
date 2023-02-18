@@ -12,6 +12,13 @@ void post(const char *url, DynamicJsonDocument &json)
         client = new BearSSL::WiFiClientSecure;
     }
 
+    if (!client)
+    {
+        Serial.print("[HTTPS] error creating BearSSL::WiFiClientSecure\n");
+        return;
+    }
+
+
     client->setInsecure();
 
     HTTPClient https;
@@ -40,10 +47,10 @@ void post(const char *url, DynamicJsonDocument &json)
                 String payload = https.getString();
                 Serial.println(payload);
             }
-        } else {
+        } 
+        else 
+        {
             Serial.printf("[HTTPS] POST... failed, error: %s\n", https.errorToString(httpCode).c_str());
-            //String payload = https.getString();
-            //Serial.println(payload);
         }
 
         https.end();

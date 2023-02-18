@@ -12,6 +12,13 @@
 #include "catwheel.h"
 #include "histogram.h"
 #include "net.h"
+
+// vars.h contains:
+// const char *g_ssid
+// const char *g_password
+// const char *g_hostname
+// const char *g_googleAppsUrl
+// You'll need to implement these yourself.
 #include "vars.h"
 
 Timezone tz;

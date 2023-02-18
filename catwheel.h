@@ -1,5 +1,6 @@
 #pragma once
 
+// just a simple LED blinker so I know things are still working
 struct Led
 {
     uint32_t toggleTime = 0;
@@ -23,6 +24,10 @@ struct Led
         }
     }
 };
+
+// the following helpers are for wraparound-resistant timing calculations.
+// since I hope this code will stay up longer than Windows 95, I wanted
+// to avoid the 49.7-day 32-bit millisecond wraparound bug.  
 
 bool millisIsGreater(uint32_t a, uint32_t b)
 {

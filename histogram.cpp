@@ -1,6 +1,17 @@
 #include <stdint.h>
 #include "histogram.h"
 
+// distributes the data in slots across a number of output bins.
+// note that each slot may contain a number of hits, which may
+// straddle multiple bins.  for instance, suppose that we have
+// two HistoSlots:
+// count=1000 value=10
+// count=200 value=20
+// we then want to output into two bins.  we should get:
+// count=600 value=600*10=6000 bin=10
+// count=600 value=400*10 + 200*20=8000 bin=13.33
+//
+// note that the computation is destructive to the slots array
 void ComputeHistoBins(float *bins, uint32_t numBins, HistoSlot *slots, uint32_t numSlots)
 {
     uint32_t totalCount = 0;
